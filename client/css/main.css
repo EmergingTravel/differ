@@ -1,0 +1,89 @@
+html,
+body {
+    height: 100%;
+}
+
+body {
+    padding: 20px;
+}
+
+a.logo {
+    text-decoration: none;
+    color: black;
+}
+
+.flex-col {
+    display: flex;
+    flex-direction: column;
+}
+
+.flex-col>* {
+    flex: auto
+}
+
+.flex-row {
+    display: flex;
+    flex-direction: row;
+}
+
+.flex-row>* {
+    flex: auto
+}
+
+.shrink {
+    flex-grow: 0;
+}
+
+.grow {
+    flex-grow: 1
+}
+
+.h100 {
+    height: 100%;
+}
+
+.hidden {
+    visibility: hidden;
+}
+
+.controls {
+    margin-bottom: 4px;
+}
+
+.controls button {
+    margin-right: 4px;
+    border-radius: 4px;
+}
+
+.controls button.compare {}
+
+.controls button.edit {}
+
+.controls button.save {}
+
+.delim {
+    min-width: 4px;
+}
+
+form input#title {
+    margin-bottom: 4px;
+}
+
+form .files textarea {
+    resize: none;
+    flex-grow: 1;
+    height: 80%;
+    font-family: monospace;
+    min-height: 400px;
+}
+
+
+.d2h-file-header {
+    z-index: inherit;
+    display: block;
+    height: auto;
+}
+
+.d2h-file-header>* {
+    margin: 2px;
+}

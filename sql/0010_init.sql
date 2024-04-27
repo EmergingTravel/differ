@@ -1,0 +1,6 @@
+CREATE TABLE
+    IF NOT EXISTS items (
+        id BIGSERIAL PRIMARY KEY,
+        created TIMESTAMP DEFAULT CURRENT_TIMESTAMP,
+        data BYTEA NOT NULL
+    );

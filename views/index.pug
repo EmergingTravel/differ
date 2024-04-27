@@ -1,0 +1,29 @@
+extends layout
+
+block append head
+  script.
+    window._diffContext = !{context}
+
+block content
+  .flex-col.h100
+    .header.shrink
+      h1
+        a.logo(href='/') DIƒƒER
+
+    .main.grow
+      .controls.shrink
+        button.compare.hidden.pure-button(type='button') COMPARE
+        button.edit.hidden.pure-button(type='button') EDIT
+        button.save.hidden.pure-button(type='button') SAVE
+
+      .diff.shrink.hidden
+
+      form#main.h100.flex-col.pure-form
+
+        input#title(maxlength=64 placeholder='Untitled').shrink
+
+        .grow
+          .files.flex-row.hidden
+            textarea#fileA.pure-input-1
+            .delim.shrink
+            textarea#fileB.pure-input-1

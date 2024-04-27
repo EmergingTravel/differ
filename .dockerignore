@@ -1,0 +1,8 @@
+.git/
+.gitignore
+Dockerfile
+client/
+node_modules/
+sql/
+volumes/
+
