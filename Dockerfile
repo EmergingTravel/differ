@@ -2,11 +2,11 @@ FROM node:20-alpine3.18 AS base
 ENV HOME=/app
 WORKDIR /app
 
-# Install packages
+# Install all packages
 COPY package.json package-lock.json /app/
 RUN npm install --include dev
 
-# Build static
+# Build static & reinstall production packages
 COPY gulpfile.js /app
 COPY client /app/client
 RUN set -x \

@@ -1,10 +1,12 @@
 *.log
 .env
 .npm
+docker-compose.override.yml
 logs
 node_modules/
 npm-debug.log*
-public
-volumes
+public/
+tmp/
+volumes/
 yarn-debug.log*
 yarn-error.log*
