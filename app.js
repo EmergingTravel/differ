@@ -24,7 +24,6 @@ app.use(express.static(path.join(__dirname, 'public'), {
 // Static bundles
 const bundles = getBundles()
 app.use(function (req, res, next) {
-  console.log(bundles)
   res.locals.bundles = bundles
   next()
 })

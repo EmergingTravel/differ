@@ -1,6 +1,4 @@
 (function () {
-    const _UTC_OFFSET = new Date().getTimezoneOffset() * 60000
-
     Element.prototype.show = function () {
         this.classList.remove('hidden')
     }
@@ -11,11 +9,6 @@
 
     Element.prototype.toggle = function () {
         this.classList.toggle('hidden')
-    }
-
-    Date.parseUTCTimestamp = function (value) {
-        console.log(value, _UTC_OFFSET)
-        return new Date(Date.parse(value) - _UTC_OFFSET)
     }
 
     const $ = document.querySelector.bind(document),
@@ -109,7 +102,7 @@
         const title = this.state.title || 'Untitled'
         let html = `<div>Name: <strong>${title}</strong></div>`
         if (this.state.created) {
-            const date = dateFormat(Date.parseUTCTimestamp(this.state.created))
+            const date = dateFormat(new Date(Date.parse(this.state.created)))
             html += `<div>Date: <strong>${date}</strong></div>`
         }
         header.innerHTML = html

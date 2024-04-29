@@ -21,24 +21,21 @@
     "gulp-cli": "^3.0.0",
     "gulp-concat": "^2.6.1",
     "gulp-hash-filename": "^4.1.0",
-    "gulp-inject-string": "^1.1.2",
     "gulp-uglify": "^3.0.2",
     "jasmine": "^5.1.0",
     "merge-stream": "^2.0.0",
-    "nodemon": "^3.1.0",
     "ordered-read-streams": "^2.0.0"
   },
   "nodemonConfig": {
     "env": {
       "NODE_ENV": "development"
     },
-    "ext": "js,json,css,pug",
+    "ext": "js,json,css",
     "watch": [
       "bin",
       "public",
       "lib",
       "routes",
-      "views",
       "app.js",
       "*.json"
     ]

@@ -1,11 +1,25 @@
-FROM node:20-alpine3.18
-
+FROM node:20-alpine3.18 AS base
+ENV HOME=/app
 WORKDIR /app
 
+# Install packages
 COPY package.json package-lock.json /app/
+RUN npm install --include dev
 
-RUN npm i
+# Build static
+COPY gulpfile.js /app
+COPY client /app/client
+RUN set -x \
+    && mkdir -p public/css public/js \
+    && npx gulp \
+    && rm -r node_modules \
+    && npm install --omit dev \
+    && rm -r /app/.npm
 
+FROM node:20-alpine3.18
+ENV HOME=/app
+COPY --from=base --chown=nobody:nobody /app /app
 COPY . /app
-
-CMD ["node", "/app/bin/www"]
+WORKDIR /app
+USER nobody:nobody
+CMD ["npx", "pm2", "start", "--no-daemon"]

@@ -14,7 +14,6 @@ router.get('/:key', async function (req, res, next) {
   try {
     const id = decode(req.params.key)
     const item = await db.load(id)
-    console.log(item)
     res.render('index', {
       context: JSON.stringify({
         id: req.params.key,

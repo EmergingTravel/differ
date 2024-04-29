@@ -1,8 +1,7 @@
 .git/
 .gitignore
 Dockerfile
-client/
+public/
 node_modules/
 sql/
 volumes/
-
