@@ -77,6 +77,9 @@ form .files textarea {
     min-height: 400px;
 }
 
+.d2h-file-header.d2h-sticky-header {
+    z-index: inherit;
+}
 
 .d2h-file-header {
     z-index: inherit;
@@ -86,4 +89,8 @@ form .files textarea {
 
 .d2h-file-header>* {
     margin: 2px;
+}
+
+.diff-stats {
+    margin-top: 16px;
 }

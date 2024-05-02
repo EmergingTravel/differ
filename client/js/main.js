@@ -26,6 +26,16 @@
     return [fileA.join("\n"), fileB.join("\n")]
   }
 
+  const diffStats = diff => {
+    const lines = diff.split("\n").slice(3)
+    let added = 0, removed = 0
+    for (const line of lines) {
+      if (line[0] === '+') added++
+      else if (line[0] === '-') removed++
+    }
+    return [added, removed]
+  }
+
   const $ = document.querySelector.bind(document),
     MODAL_ID = 'modal-1',
     VIEW_MODE_EDIT = 'edit',
@@ -58,15 +68,17 @@
       diff: null,
     }
 
-    this.ui.compare.onclick = function () {
+    function compareHandler() {
       try {
         _app.compare()
         _app.render()
         _app.toggleView(VIEW_MODE_DIFF)
       } catch (e) {
-        _app.error(e)
+        _app.error(e.message)
       }
     }
+
+    this.ui.compare.onclick = compareHandler
 
     this.ui.edit.onclick = function () {
       _app.restore()
@@ -75,6 +87,11 @@
 
     this.ui.save.onclick = function (e) {
       _app.save()
+    }
+
+    this.ui.form.onsubmit = function (e) {
+      e.preventDefault()
+      compareHandler()
     }
   }
 
@@ -92,6 +109,7 @@
     })
     this.state.data = buffer.Buffer(pako.deflate(this.state.diff)).toString('hex')
     this.state.title = this.ui.title.value
+    this.state.created = null
   }
 
   App.prototype.render = function () {
@@ -117,19 +135,24 @@
     const header = $('.d2h-file-header')
     const title = this.state.title || 'Untitled'
     let html = `<div>Name: <strong>${title}</strong></div>`
+
     if (this.state.created) {
       const date = dateFormat(new Date(Date.parse(this.state.created)))
       html += `<div>Date: <strong>${date}</strong></div>`
     }
+
+    const [added, removed] = diffStats(this.state.diff)
+    html += ''
+      + `<div class="diff-stats flex-row">`
+      + `<span class="grow">➖ ${removed} removed</span>`
+      + `<span class="grow">➕ ${added} added</span>`
+      + `</div>`
+
     header.innerHTML = html
   }
 
   App.prototype.getLink = function () {
     return this.state.id ? window.location.origin + '/' + this.state.id : null
-  }
-
-  App.prototype.clear = function () {
-    this.ui.diff.innerHTML = ''
   }
 
   App.prototype.restore = function () {
@@ -142,14 +165,14 @@
   App.prototype.toggleView = function (mode) {
     if (mode == VIEW_MODE_DIFF) {
       this.ui.diff.show()
-      this.ui.files.hide()
+      this.ui.form.hide()
       this.ui.compare.hide()
       this.ui.edit.show()
       this.ui.save.show()
       this.ui.title.hide()
     } else if (mode === VIEW_MODE_EDIT) {
       this.ui.diff.hide()
-      this.ui.files.show()
+      this.ui.form.show()
       this.ui.compare.show()
       this.ui.edit.hide()
       this.ui.save.hide()
@@ -181,6 +204,8 @@
       headers: { 'content-type': 'application/json' }
     }).then(r => r.json()).then(data => {
       this.state.id = data.id
+      // const url = `${window.location.origin}/${data.id}`
+      // this.modal('🌟', `<a href="${url}">${url}</a>`)
       window.location.href = '/' + data.id
     })
   }
