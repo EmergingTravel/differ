@@ -17,6 +17,19 @@ RUN set -x \
     && rm -r /app/.npm
 
 FROM node:20-alpine3.18
+
+ARG GIT_BRANCH=local
+ARG GIT_COMMIT=local
+ARG VERSION=local
+ARG PIPELINE_ID=local
+ARG SOURCE=local
+
+ENV GIT_BRANCH=$GIT_BRANCH \
+    GIT_COMMIT=$GIT_COMMIT \
+    VERSION=$VERSION \
+    PIPELINE_ID=$PIPELINE_ID \
+    SOURCE=$SOURCE
+
 ENV HOME=/app
 COPY --from=base --chown=nobody:nobody /app /app
 COPY . /app
