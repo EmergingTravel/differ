@@ -1,4 +1,0 @@
-#!/bin/sh -e
-
-docker build -t differ:latest .
-
