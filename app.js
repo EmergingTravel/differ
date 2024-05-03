@@ -6,6 +6,7 @@ const path = require('path')
 
 const { getBundles } = require('./lib/static')
 const indexRouter = require('./routes/index')
+const systemRouter = require('./routes/system')
 
 const app = express()
 
@@ -28,6 +29,7 @@ app.use(function (req, res, next) {
   next()
 })
 
+app.use('/', systemRouter)
 app.use('/', indexRouter)
 
 // catch 404 and forward to error handler
