@@ -55,12 +55,6 @@ a.logo {
     border-radius: 4px;
 }
 
-.controls button.compare {}
-
-.controls button.edit {}
-
-.controls button.save {}
-
 .delim {
     min-width: 4px;
 }
@@ -82,7 +76,6 @@ form .files textarea {
 }
 
 .d2h-file-header {
-    z-index: inherit;
     display: block;
     height: auto;
 }

@@ -1,4 +1,4 @@
-const { src, dest, parallel, series, watch, task } = require('gulp')
+const { src, dest, parallel, series, watch } = require('gulp')
 const clean = require('gulp-clean')
 const uglifyCSS = require('gulp-clean-css')
 const concat = require('gulp-concat')
@@ -19,18 +19,19 @@ const build = (type, compile) =>
     ])
         .pipe(concat(`bundle.${type}`))
         .pipe(hash({ format: HASH_FORMAT }))
-        .pipe(dest(`./public/${type}`))
+        .pipe(dest(`public/${type}`))
 
 const buildCSS = () => build('css', uglifyCSS)
 const buildJS = () => build('js', uglifyJS)
 
 const css = series(cleanCSS, buildCSS)
 const js = series(cleanJS, buildJS)
+const favicon = () => src('client/icon.svg').pipe(dest('public'))
 
 const watchCSS = () => watch('client/css/**', { ignoreInitial: false }, css)
 const watchJS = () => watch('client/js/**', { ignoreInitial: false }, js)
 
 module.exports = {
-    default: parallel(css, js),
+    default: parallel(css, js, favicon),
     watch: parallel(watchCSS, watchJS)
 }
