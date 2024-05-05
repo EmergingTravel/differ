@@ -1,4 +1,5 @@
 const { src, dest, parallel, series, watch } = require('gulp')
+const fs = require('fs')
 const clean = require('gulp-clean')
 const uglifyCSS = require('gulp-clean-css')
 const concat = require('gulp-concat')
@@ -7,6 +8,14 @@ const uglifyJS = require('gulp-uglify')
 const order = require('ordered-read-streams')
 
 const HASH_FORMAT = '{name}.{hash:6}{ext}'
+
+const init = cb => {
+    ['public/css', 'public/js'].forEach(x =>
+        fs.existsSync(x) || fs.mkdirSync(x, { recursive: true })
+    )
+    cb()
+}
+
 
 const cleanCSS = () => src('public/css/*').pipe(clean())
 
@@ -26,12 +35,12 @@ const buildJS = () => build('js', uglifyJS)
 
 const css = series(cleanCSS, buildCSS)
 const js = series(cleanJS, buildJS)
-const favicon = () => src('client/icon.svg').pipe(dest('public'))
+const favicon = () => src('client/img/icon.svg').pipe(dest('public'))
 
 const watchCSS = () => watch('client/css/**', { ignoreInitial: false }, css)
 const watchJS = () => watch('client/js/**', { ignoreInitial: false }, js)
 
 module.exports = {
-    default: parallel(css, js, favicon),
-    watch: parallel(watchCSS, watchJS)
+    default: series(init, parallel(css, js, favicon)),
+    watch: series(init, parallel(watchCSS, watchJS))
 }

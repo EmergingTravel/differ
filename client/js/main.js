@@ -11,6 +11,12 @@
     this.classList.toggle('hidden')
   }
 
+  Element.prototype.fadeOut = function () {
+    this.classList.add('fade')
+    setTimeout(() => { this.classList.add('fade-out') }, 1)
+    setTimeout(() => { this.classList.remove('fade-out') }, 1000)
+  }
+
   const restoreDiff = diff => {
     const lines = diff.split("\n").slice(3)
     const [fileA, fileB] = [[], []]
@@ -134,12 +140,30 @@
   App.prototype.setDiffInfo = function () {
     const header = $('.d2h-file-header')
     const title = this.state.title || 'Untitled'
-    let html = `<div>Name: <strong>${title}</strong></div>`
+    let copyButton = false
+    let html = `<div class="diff-info">`
+
+    if (this.state.title) {
+      html += `<div>Name: <strong>${title}</strong></div>`
+    }
 
     if (this.state.created) {
       const date = dateFormat(new Date(Date.parse(this.state.created)))
       html += `<div>Date: <strong>${date}</strong></div>`
     }
+
+    if (this.state.id) {
+      const url = this.getUrl()
+      copyButton = true
+      html +=
+        `<div class="url">`
+        + `URL: <a href="${url}">${url}</a>`
+        + `<span class="copy" data-url="${url}"></span>`
+        + `<span class="copy-success fade hidden">Copied</span>`
+        + `</div>`
+    }
+
+    html += `</div>`
 
     const [added, removed] = diffStats(this.state.diff)
     html += ''
@@ -149,10 +173,25 @@
       + `</div>`
 
     header.innerHTML = html
+
+    if (copyButton) {
+      $('.diff-info .url .copy').onclick = this.copyUrl
+    }
   }
 
-  App.prototype.getLink = function () {
+  App.prototype.getUrl = function () {
     return this.state.id ? window.location.origin + '/' + this.state.id : null
+  }
+
+  App.prototype.copyUrl = async function (e) {
+    const target = e.currentTarget
+    const url = target.getAttribute('data-url');
+    await navigator.clipboard.writeText(url)
+
+    // const success = target.nextSibling
+    // success.show()
+    // success.fadeOut()
+    // setTimeout(() => success.hide(), 1000)
   }
 
   App.prototype.restore = function () {
