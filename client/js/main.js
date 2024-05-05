@@ -160,6 +160,9 @@
     this.ui.title.value = this.state.title
     this.ui.fileA.value = fileA
     this.ui.fileB.value = fileB
+    this.state.id = null
+    this.state.data = null
+    this.state.diff = null
   }
 
   App.prototype.toggleView = function (mode) {
@@ -168,15 +171,15 @@
       this.ui.form.hide()
       this.ui.compare.hide()
       this.ui.edit.show()
-      this.ui.save.show()
-      this.ui.title.hide()
+      if (!this.state.id) {
+        this.ui.save.show()
+      }
     } else if (mode === VIEW_MODE_EDIT) {
       this.ui.diff.hide()
       this.ui.form.show()
       this.ui.compare.show()
       this.ui.edit.hide()
       this.ui.save.hide()
-      this.ui.title.show()
     }
   }
 
