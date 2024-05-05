@@ -72,7 +72,7 @@ form .files textarea {
 }
 
 .d2h-file-header.d2h-sticky-header {
-    z-index: inherit;
+    z-index: 2;
 }
 
 .d2h-file-header {
@@ -86,4 +86,8 @@ form .files textarea {
 
 .diff-stats {
     margin-top: 16px;
+}
+
+.modal__overlay {
+    z-index: 5;
 }
