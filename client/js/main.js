@@ -140,7 +140,7 @@
   App.prototype.setDiffInfo = function () {
     const header = $('.d2h-file-header')
     const title = this.state.title || 'Untitled'
-    let copyButton = false
+    // let copyButton = false
     let html = `<div class="diff-info">`
 
     if (this.state.title) {
@@ -154,12 +154,12 @@
 
     if (this.state.id) {
       const url = this.getUrl()
-      copyButton = true
+      // copyButton = true
       html +=
         `<div class="url">`
         + `URL: <a href="${url}">${url}</a>`
-        + `<span class="copy" data-url="${url}"></span>`
-        + `<span class="copy-success fade hidden">Copied</span>`
+        // + `<span class="copy" data-url="${url}"></span>`
+        // + `<span class="copy-success fade hidden">Copied</span>`
         + `</div>`
     }
 
@@ -174,9 +174,9 @@
 
     header.innerHTML = html
 
-    if (copyButton) {
-      $('.diff-info .url .copy').onclick = this.copyUrl
-    }
+    // if (copyButton) {
+    // $('.diff-info .url .copy').onclick = this.copyUrl
+    // }
   }
 
   App.prototype.getUrl = function () {
