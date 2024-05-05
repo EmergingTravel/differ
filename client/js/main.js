@@ -197,6 +197,7 @@
   }
 
   App.prototype.save = function () {
+    this.ui.save.disabled = true
     const body = {
       title: this.state.title,
       data: this.state.data
@@ -207,9 +208,12 @@
       headers: { 'content-type': 'application/json' }
     }).then(r => r.json()).then(data => {
       this.state.id = data.id
-      // const url = `${window.location.origin}/${data.id}`
-      // this.modal('🌟', `<a href="${url}">${url}</a>`)
+      this.ui.save.hide()
       window.location.href = '/' + data.id
+    }).catch(err => {
+      this.error(err)
+    }).finally(() => {
+      this.ui.save.disabled = false
     })
   }
 
