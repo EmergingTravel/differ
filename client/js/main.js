@@ -246,6 +246,9 @@
       body: JSON.stringify(body),
       headers: { 'content-type': 'application/json' }
     }).then(r => r.json()).then(data => {
+      if (!data.id) {
+        throw Error('Save failed')
+      }
       this.state.id = data.id
       this.ui.save.hide()
       window.location.href = '/' + data.id

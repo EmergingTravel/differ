@@ -1,6 +1,7 @@
 const express = require('express')
 const createError = require('http-errors')
 const db = require('../lib/db')
+const { exec } = require('../lib/exec')
 const { encode, decode } = require('../lib/key')
 const { getUrl } = require('../lib/url')
 
@@ -28,9 +29,15 @@ router.get('/:key', async function (req, res, next) {
 })
 
 router.post('/api/save', async function (req, res, next) {
-  const data = Buffer.from(req.body.data, 'hex')
+  // const data = Buffer.from(req.body.data, 'hex')
+  const data = req.body.data
   const title = req.body.title
-  const id = await db.save(data, title)
+  let id
+  try {
+    id = await db.save(data, title)
+  } catch (e) {
+    return res.status(500).json({ 'error': e })
+  }
   const result = { id: encode(id) }
   res.status(201).json(result)
 });
@@ -38,6 +45,12 @@ router.post('/api/save', async function (req, res, next) {
 router.get('/api/list', async function (req, res, next) {
   const items = await db.list()
   res.json(items.map(x => getUrl(req, encode(x))))
+})
+
+router.get('/api/system', async function (req, res, next) {
+  const proc = await exec('npm list --json')
+  const data = JSON.parse(proc.stdout)
+  res.json(data)
 })
 
 module.exports = router;
