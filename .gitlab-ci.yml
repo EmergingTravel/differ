@@ -4,19 +4,11 @@ stages:
     - push
     - deploy
 
-variables:
-    build_tag: docker-office.ostrovok.in/cache/${CI_PROJECT_NAME}:b${CI_PIPELINE_ID}
-    build_tag_latest: docker-office.ostrovok.in/cache/${CI_PROJECT_NAME}:latest
-    registry_dev: docker-office.ostrovok.in/releases
-    registry_list: ${registry_dev}
-    release_image: ${CI_PROJECT_NAME}:b${CI_PIPELINE_ID}
-    version: b${CI_PIPELINE_ID}
-    DEPLOY_SCRIPT: /opt/jtower/jtower.py
-
 include:
     project: "lib/gitlab-ci"
     ref: master
     file:
+        - "templates/gitlab-ci/docker/variables.yml"
         - "templates/gitlab-ci/docker/build.yml"
         - "templates/gitlab-ci/docker/image_push.yml"
         - "templates/gitlab-ci/docker/deploy.yml"
