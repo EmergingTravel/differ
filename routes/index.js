@@ -4,12 +4,13 @@ const db = require('../lib/db')
 const { exec } = require('../lib/exec')
 const { encode, decode } = require('../lib/key')
 const { getUrl } = require('../lib/url')
+const { getPagedResponse } = require('../lib/paging')
 
 const router = express.Router()
 
 router.get('/', function (req, res, next) {
-  res.render('index', { context: "{}" });
-});
+  res.render('index', { context: '{}' })
+})
 
 router.get('/:key', async function (req, res, next) {
   try {
@@ -20,8 +21,8 @@ router.get('/:key', async function (req, res, next) {
         id: req.params.key,
         created: item.created,
         title: item.title,
-        data: Buffer.from(item.data).toString('hex')
-      })
+        data: Buffer.from(item.data).toString('hex'),
+      }),
     })
   } catch (e) {
     next(createError(404))
@@ -36,15 +37,18 @@ router.post('/api/save', async function (req, res, next) {
   try {
     id = await db.save(data, title)
   } catch (e) {
-    return res.status(500).json({ 'error': e })
+    return res.status(500).json({ error: e })
   }
   const result = { id: encode(id) }
   res.status(201).json(result)
-});
+})
 
 router.get('/api/list', async function (req, res, next) {
-  const items = await db.list()
-  res.json(items.map(x => getUrl(req, encode(x))))
+  const limit = Math.min(+req.query.limit || 100, 100)
+  const offset = +req.query.offset || 0
+  const [items, total] = await db.list(limit, offset)
+  const data = items.map((x) => getUrl(req, encode(x)))
+  res.json(getPagedResponse(req, limit, offset, data, total))
 })
 
 router.get('/api/system', async function (req, res, next) {
@@ -53,4 +57,4 @@ router.get('/api/system', async function (req, res, next) {
   res.json(data)
 })
 
-module.exports = router;
+module.exports = router
