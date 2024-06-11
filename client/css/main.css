@@ -1,95 +1,102 @@
 html,
 body {
-    height: 100%;
+  height: 100%;
 }
 
 * {
-    opacity: 1;
+  opacity: 1;
 }
 
 body {
-    padding: 20px;
+  padding: 20px;
 }
 
 a.logo {
-    text-decoration: none;
-    color: black;
+  text-decoration: none;
+  color: black;
+}
+
+sup.version {
+  font-size: 42%;
+  vertical-align: super;
+  position: relative;
+  cursor: pointer;
 }
 
 .flex-col {
-    display: flex;
-    flex-direction: column;
+  display: flex;
+  flex-direction: column;
 }
 
-.flex-col>* {
-    flex: auto
+.flex-col > * {
+  flex: auto;
 }
 
 .flex-row {
-    display: flex;
-    flex-direction: row;
+  display: flex;
+  flex-direction: row;
 }
 
-.flex-row>* {
-    flex: auto
+.flex-row > * {
+  flex: auto;
 }
 
 .shrink {
-    flex-grow: 0;
+  flex-grow: 0;
 }
 
 .grow {
-    flex-grow: 1
+  flex-grow: 1;
 }
 
 .h100 {
-    height: 100%;
+  height: 100%;
 }
 
 .hidden {
-    visibility: hidden;
+  visibility: hidden;
 }
 
 .fade {
-    transition: opacity 1s;
+  transition: opacity 1s;
 }
 
 .fade-out {
-    opacity: 0;
+  opacity: 0;
 }
 
 .controls {
-    margin-bottom: 4px;
+  margin-bottom: 4px;
 }
 
 .controls button {
-    margin-right: 4px;
-    border-radius: 4px;
+  margin-right: 4px;
+  border-radius: 4px;
 }
 
 .delim {
-    min-width: 4px;
+  min-width: 4px;
 }
 
 form input#title {
-    margin-bottom: 4px;
+  margin-bottom: 4px;
 }
 
 form .files textarea {
-    resize: none;
-    flex-grow: 1;
-    height: 80%;
-    font-family: monospace;
-    min-height: 400px;
+  resize: none;
+  flex-grow: 1;
+  height: 80%;
+  font-family: monospace;
+  min-height: 400px;
 }
 
 .d2h-file-header.d2h-sticky-header {
-    z-index: 2;
+  z-index: 2;
 }
 
 .d2h-file-header {
-    display: block;
-    height: auto;
+  display: block;
+  height: auto;
 }
 
 .d2h-file-header > * {
@@ -101,24 +108,64 @@ form .files textarea {
 }
 
 .diff-info .url .copy {
-    background: url('data:image/svg+xml;base64,PHN2ZyB4bWxucz0iaHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmciIHdpZHRoPSI4MDAiIGhlaWdodD0iODAwIiB2aWV3Qm94PSIwIDAgMjQgMjQiPjxwYXRoIGQ9Ik04IDd2MUg2LjVBMS41IDEuNSAwIDAgMCA1IDkuNXY5QTEuNSAxLjUgMCAwIDAgNi41IDIwaDdhMS41IDEuNSAwIDAgMCAxLjUtMS41VjE3aDF2MS41YTIuNSAyLjUgMCAwIDEtMi41IDIuNWgtN0EyLjUgMi41IDAgMCAxIDQgMTguNXYtOUEyLjUgMi41IDAgMCAxIDYuNSA3em04LTNoLTUuNUExLjUgMS41IDAgMCAwIDkgNS41djlhMS41IDEuNSAwIDAgMCAxLjUgMS41aDdhMS41IDEuNSAwIDAgMCAxLjUtMS41VjdoLTIuNWEuNS41IDAgMCAxLS41LS41em00IDIuNTI4VjE0LjVhMi41IDIuNSAwIDAgMS0yLjUgMi41aC03QTIuNSAyLjUgMCAwIDEgOCAxNC41di05QTIuNSAyLjUgMCAwIDEgMTAuNSAzaDUuOTcyYS41LjUgMCAwIDEgLjM4Mi4xNDZsMyAzYS41LjUgMCAwIDEgLjE0Ni4zODJNMTcgNmgxLjI5M0wxNyA0LjcwN3ptLTUuNSA3YS41LjUgMCAxIDEgMC0xaDJhLjUuNSAwIDEgMSAwIDF6bTAtMmEuNS41IDAgMSAxIDAtMWg1YS41LjUgMCAxIDEgMCAxem0wLTJhLjUuNSAwIDEgMSAwLTFoNWEuNS41IDAgMSAxIDAgMXoiLz48L3N2Zz4=');
-    background-size: cover;
-    cursor: pointer;
-    display: inline-block;
-    width: 16px;
-    height: 16px;
-    transition: transform 0.2s;
-    margin: 0 4px -3px;
+  background: url('data:image/svg+xml;base64,PHN2ZyB4bWxucz0iaHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmciIHdpZHRoPSI4MDAiIGhlaWdodD0iODAwIiB2aWV3Qm94PSIwIDAgMjQgMjQiPjxwYXRoIGQ9Ik04IDd2MUg2LjVBMS41IDEuNSAwIDAgMCA1IDkuNXY5QTEuNSAxLjUgMCAwIDAgNi41IDIwaDdhMS41IDEuNSAwIDAgMCAxLjUtMS41VjE3aDF2MS41YTIuNSAyLjUgMCAwIDEtMi41IDIuNWgtN0EyLjUgMi41IDAgMCAxIDQgMTguNXYtOUEyLjUgMi41IDAgMCAxIDYuNSA3em04LTNoLTUuNUExLjUgMS41IDAgMCAwIDkgNS41djlhMS41IDEuNSAwIDAgMCAxLjUgMS41aDdhMS41IDEuNSAwIDAgMCAxLjUtMS41VjdoLTIuNWEuNS41IDAgMCAxLS41LS41em00IDIuNTI4VjE0LjVhMi41IDIuNSAwIDAgMS0yLjUgMi41aC03QTIuNSAyLjUgMCAwIDEgOCAxNC41di05QTIuNSAyLjUgMCAwIDEgMTAuNSAzaDUuOTcyYS41LjUgMCAwIDEgLjM4Mi4xNDZsMyAzYS41LjUgMCAwIDEgLjE0Ni4zODJNMTcgNmgxLjI5M0wxNyA0LjcwN3ptLTUuNSA3YS41LjUgMCAxIDEgMC0xaDJhLjUuNSAwIDEgMSAwIDF6bTAtMmEuNS41IDAgMSAxIDAtMWg1YS41LjUgMCAxIDEgMCAxem0wLTJhLjUuNSAwIDEgMSAwLTFoNWEuNS41IDAgMSAxIDAgMXoiLz48L3N2Zz4=');
+  background-size: cover;
+  cursor: pointer;
+  display: inline-block;
+  width: 16px;
+  height: 16px;
+  transition: transform 0.2s;
+  margin: 0 4px -3px;
 }
 
 .diff-info .url .copy:hover {
-    transform: scale(1.3);
+  transform: scale(1.3);
 }
 
 .diff-stats {
-    margin-top: 16px;
+  margin-top: 16px;
 }
 
 .modal__overlay {
-    z-index: 5;
+  z-index: 5;
+}
+
+/* LOADER */
+
+.lds-dual-ring {
+  /* change color here */
+  color: #888;
+}
+
+.lds-dual-ring,
+.lds-dual-ring:after {
+  box-sizing: border-box;
+}
+
+.lds-dual-ring {
+  display: inline-block;
+  width: 24px;
+  height: 24px;
+}
+
+.lds-dual-ring:after {
+  content: ' ';
+  display: block;
+  width: 24px;
+  height: 24px;
+  margin-left: 8px;
+  border-radius: 50%;
+  border: 6.4px solid currentColor;
+  border-color: currentColor transparent currentColor transparent;
+  animation: lds-dual-ring 1.2s linear infinite;
+}
+
+@keyframes lds-dual-ring {
+  0% {
+    transform: rotate(0deg);
+  }
+
+  100% {
+    transform: rotate(360deg);
+  }
 }
