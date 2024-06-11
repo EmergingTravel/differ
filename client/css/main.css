@@ -92,8 +92,12 @@ form .files textarea {
     height: auto;
 }
 
-.d2h-file-header>* {
-    margin: 2px;
+.d2h-file-header > * {
+  margin: 2px;
+}
+
+.d2h-code-line-ctn > br {
+  user-select: none;
 }
 
 .diff-info .url .copy {
