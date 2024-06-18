@@ -5,6 +5,7 @@ const { exec } = require('../lib/exec')
 const { encode, decode } = require('../lib/key')
 const { getUrl } = require('../lib/url')
 const { getPagedResponse } = require('../lib/paging')
+const { formatDataSize } = require('../lib/format')
 
 const router = express.Router()
 
@@ -43,7 +44,10 @@ router.post('/api/save', async function (req, res, next) {
 })
 
 router.get('/api/stats', async function (req, res, next) {
-  res.json(await db.stats())
+  const stats = await db.stats()
+
+  stats.size = formatDataSize(stats.size)
+  res.json(stats)
 })
 
 router.get('/api/list', async function (req, res, next) {
