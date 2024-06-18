@@ -30,7 +30,6 @@ router.get('/:key', async function (req, res, next) {
 })
 
 router.post('/api/save', async function (req, res, next) {
-  // const data = Buffer.from(req.body.data, 'hex')
   const data = req.body.data
   const title = req.body.title
   let id
@@ -41,6 +40,10 @@ router.post('/api/save', async function (req, res, next) {
   }
   const result = { id: encode(id) }
   res.status(201).json(result)
+})
+
+router.get('/api/stats', async function (req, res, next) {
+  res.json(await db.stats())
 })
 
 router.get('/api/list', async function (req, res, next) {
