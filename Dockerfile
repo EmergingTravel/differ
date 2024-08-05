@@ -4,6 +4,7 @@ WORKDIR /app
 
 # Install all packages
 COPY package.json package-lock.json /app/
+RUN npm update -g npm
 RUN npm install --include dev
 
 # Build static & reinstall production packages
@@ -31,8 +32,9 @@ ENV GIT_BRANCH=$GIT_BRANCH \
     SOURCE=$SOURCE
 
 ENV HOME=/app
-COPY --from=base --chown=nobody:nobody /app /app
-COPY . /app
 WORKDIR /app
+COPY --from=base /app /app
+COPY . /app
+RUN chown -R nobody:nobody /app
 USER nobody:nobody
 CMD ["npx", "pm2", "start", "--no-daemon"]
