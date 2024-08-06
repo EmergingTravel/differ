@@ -94,15 +94,6 @@
       e.preventDefault()
       compareHandler()
     }
-
-    // Attach line number update handler
-    // for (const el of [this.ui.fileA, this.ui.fileB]) {
-    //   el.addEventListener('input', lineNumHandler)
-    //   el.addEventListener(
-    //     'scroll',
-    //     () => (el.previousElementSibling.scrollTop = el.scrollTop)
-    //   )
-    // }
   }
 
   App.prototype.compare = function () {

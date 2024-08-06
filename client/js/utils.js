@@ -1,15 +1,27 @@
+/**
+ * Show element
+ */
 Element.prototype.show = function () {
   this.classList.remove('hidden')
 }
 
+/**
+ * Hide element
+ */
 Element.prototype.hide = function () {
   this.classList.add('hidden')
 }
 
+/**
+ * Toggle element visibility
+ */
 Element.prototype.toggle = function () {
   this.classList.toggle('hidden')
 }
 
+/**
+ * Fade element out (experimental)
+ */
 Element.prototype.fadeOut = function () {
   this.classList.add('fade')
   setTimeout(() => {

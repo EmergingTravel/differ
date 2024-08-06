@@ -97,11 +97,12 @@ input#title {
 }
 
 .editor .line-num {
-  flex-grow: 0;
-  border-radius: 4px 0 0 4px;
   background-color: #fafafa;
+  border-radius: 4px 0 0 4px;
   color: #0000004d;
+  flex-grow: 0;
   overflow: hidden;
+  text-align: right;
 }
 
 .editor>* {
@@ -109,6 +110,10 @@ input#title {
   font-size: 1em;
   line-height: 1.15;
   padding: .5em .6em;
+}
+
+.editor>textarea {
+  text-wrap: nowrap;
 }
 
 /* PURECSS OVERRIDES */
@@ -127,7 +132,7 @@ input#title {
   outline: 0; 
 }
 
-/* DIFF2HTML OVERRIDES*/
+/* DIFF2HTML OVERRIDES */
 
 .d2h-file-header.d2h-sticky-header {
   z-index: 2;
