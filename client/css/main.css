@@ -1,3 +1,4 @@
+/* DOCUMENT BASE */
 html,
 body {
   height: 100%;
@@ -22,6 +23,8 @@ sup.version {
   position: relative;
   cursor: pointer;
 }
+
+/* COMMON CLASSES */
 
 .flex-col {
   display: flex;
@@ -65,6 +68,8 @@ sup.version {
   opacity: 0;
 }
 
+/* CONTROLS */
+
 .controls {
   margin-bottom: 4px;
 }
@@ -78,17 +83,51 @@ sup.version {
   min-width: 4px;
 }
 
-form input#title {
+/* MAIN FORM */
+
+input#title {
   margin-bottom: 4px;
 }
 
-form .files textarea {
+.editor {
+  border: 1px solid #ddd;
+  border-radius: 4px;
+  border-collapse: collapse;
+  overflow: hidden;
+}
+
+.editor .line-num {
+  flex-grow: 0;
+  border-radius: 4px 0 0 4px;
+  background-color: #fafafa;
+  color: #0000004d;
+  overflow: hidden;
+}
+
+.editor>* {
+  font-family: monospace;
+  font-size: 1em;
+  line-height: 1.15;
+  padding: .5em .6em;
+}
+
+/* PURECSS OVERRIDES */
+
+.pure-form textarea {
   resize: none;
   flex-grow: 1;
-  height: 80%;
+  height: 100%;
   font-family: monospace;
   min-height: 400px;
+  border: 0;
+  border-radius: 0 4px 4px 0;
 }
+
+.pure-form input[type=text],.pure-form textarea:focus {
+  outline: 0; 
+}
+
+/* DIFF2HTML OVERRIDES*/
 
 .d2h-file-header.d2h-sticky-header {
   z-index: 2;
@@ -107,6 +146,7 @@ form .files textarea {
   user-select: none;
 }
 
+/* DIFF DETAILS */
 .diff-info .url .copy {
   background: url('data:image/svg+xml;base64,PHN2ZyB4bWxucz0iaHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmciIHdpZHRoPSI4MDAiIGhlaWdodD0iODAwIiB2aWV3Qm94PSIwIDAgMjQgMjQiPjxwYXRoIGQ9Ik04IDd2MUg2LjVBMS41IDEuNSAwIDAgMCA1IDkuNXY5QTEuNSAxLjUgMCAwIDAgNi41IDIwaDdhMS41IDEuNSAwIDAgMCAxLjUtMS41VjE3aDF2MS41YTIuNSAyLjUgMCAwIDEtMi41IDIuNWgtN0EyLjUgMi41IDAgMCAxIDQgMTguNXYtOUEyLjUgMi41IDAgMCAxIDYuNSA3em04LTNoLTUuNUExLjUgMS41IDAgMCAwIDkgNS41djlhMS41IDEuNSAwIDAgMCAxLjUgMS41aDdhMS41IDEuNSAwIDAgMCAxLjUtMS41VjdoLTIuNWEuNS41IDAgMCAxLS41LS41em00IDIuNTI4VjE0LjVhMi41IDIuNSAwIDAgMS0yLjUgMi41aC03QTIuNSAyLjUgMCAwIDEgOCAxNC41di05QTIuNSAyLjUgMCAwIDEgMTAuNSAzaDUuOTcyYS41LjUgMCAwIDEgLjM4Mi4xNDZsMyAzYS41LjUgMCAwIDEgLjE0Ni4zODJNMTcgNmgxLjI5M0wxNyA0LjcwN3ptLTUuNSA3YS41LjUgMCAxIDEgMC0xaDJhLjUuNSAwIDEgMSAwIDF6bTAtMmEuNS41IDAgMSAxIDAtMWg1YS41LjUgMCAxIDEgMCAxem0wLTJhLjUuNSAwIDEgMSAwLTFoNWEuNS41IDAgMSAxIDAgMXoiLz48L3N2Zz4=');
   background-size: cover;

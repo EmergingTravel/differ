@@ -1,26 +1,4 @@
 ;(function () {
-  Element.prototype.show = function () {
-    this.classList.remove('hidden')
-  }
-
-  Element.prototype.hide = function () {
-    this.classList.add('hidden')
-  }
-
-  Element.prototype.toggle = function () {
-    this.classList.toggle('hidden')
-  }
-
-  Element.prototype.fadeOut = function () {
-    this.classList.add('fade')
-    setTimeout(() => {
-      this.classList.add('fade-out')
-    }, 1)
-    setTimeout(() => {
-      this.classList.remove('fade-out')
-    }, 1000)
-  }
-
   const restoreDiff = (diff) => {
     const lines = diff.split('\n').slice(3)
     const [fileA, fileB] = [[], []]
@@ -96,6 +74,11 @@
       }
     }
 
+    function lineNumHandler(e) {
+      console.log(e)
+      setTimeout(() => _app.updateLineNumbers(e.target), 10)
+    }
+
     this.ui.compare.onclick = compareHandler
 
     this.ui.edit.onclick = function () {
@@ -111,6 +94,15 @@
       e.preventDefault()
       compareHandler()
     }
+
+    // Attach line number update handler
+    // for (const el of [this.ui.fileA, this.ui.fileB]) {
+    //   el.addEventListener('input', lineNumHandler)
+    //   el.addEventListener(
+    //     'scroll',
+    //     () => (el.previousElementSibling.scrollTop = el.scrollTop)
+    //   )
+    // }
   }
 
   App.prototype.compare = function () {
@@ -252,6 +244,9 @@
       this.ui.compare.show()
       this.ui.edit.hide()
       this.ui.save.hide()
+      for (const editor of window.editors) {
+        editor.updateLineNumbers()
+      }
     }
   }
 
