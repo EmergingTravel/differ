@@ -1,18 +1,18 @@
-version: "3.8"
+version: '3.8'
 
 services:
   app:
     build: .
     env_file: .env
-    restart: always
+    restart: unless-stopped
     ports:
-      - "3000:3000"
+      - '3000:3000'
     depends_on:
       - db
   db:
-    image: "postgres:16"
+    image: 'postgres:16'
     env_file: .env
-    restart: always
+    restart: unless-stopped
     volumes:
-      - "./sql:/docker-entrypoint-initdb.d:ro"
-      - "./volumes/db/data:/var/lib/postgresql/data"
+      - './sql:/docker-entrypoint-initdb.d:ro'
+      - './volumes/db/data:/var/lib/postgresql/data'
