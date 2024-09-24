@@ -58,10 +58,4 @@ router.get('/api/list', async function (req, res, next) {
   res.json(getPagedResponse(req, limit, offset, data, total))
 })
 
-router.get('/api/system', async function (req, res, next) {
-  const proc = await exec('npm list --json')
-  const data = JSON.parse(proc.stdout)
-  res.json(data)
-})
-
 module.exports = router

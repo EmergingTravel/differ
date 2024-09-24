@@ -1,7 +1,6 @@
-# Differ
+![DIƒƒER logo](./content/logo.png)
 
 Self-hosted diff tool that compares two versions of text and saves the differences. A simple alternative to diffchecker.com.
-![image.png](./content/image.png)
 
 ## Features
 
@@ -14,14 +13,16 @@ Self-hosted diff tool that compares two versions of text and saves the differenc
 1. Copy `.env.example` to `.env` and change values if needed:
 
    - `DB`: connection string to PostgreSQL database
-   - `INSTANCES`: number of pm2 instances inside a container
+   - `INSTANCES`: number of PM2 instances inside a container
    - `NODE_ENV`: `development`|`production` - affects stack tracing on error pages
 
 2. `docker compose up -d --build`
 
 ## Usage
 
-1. Open service instance (e.g. https://differ.ostrovok.in)
+![Usage example](./content/usage.gif)
+
+1. Open service instance.
 2. Enter the text in the left and right text areas.
 3. Click the `Compare` button.
 4. The differences will be highlighted.
@@ -59,7 +60,6 @@ This service is built on top of a bunch of great open-source libraries:
 ## Contributing
 
 Contributions are welcome! If you find any issues or have suggestions for improvements, please open an issue or submit a pull request.
-Also, you can contact the team directly in Slack channel #tool-differ
 
 ## License
 

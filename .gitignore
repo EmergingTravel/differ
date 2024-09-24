@@ -1,6 +1,7 @@
 *.log
 .env
 .npm
+.vscode
 docker-compose.override.yml
 logs
 node_modules/

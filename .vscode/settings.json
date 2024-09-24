@@ -1,8 +1,0 @@
-{
-    "[javascript][css]": {
-        "editor.formatOnSave": true
-    },
-    "[jade][pug][css][javascript]": {
-        "editor.tabSize": 2
-    }
-}

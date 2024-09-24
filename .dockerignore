@@ -1,5 +1,6 @@
 .git/
 .gitignore
+.vscode/
 Dockerfile
 content/
 node_modules/
