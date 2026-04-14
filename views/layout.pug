@@ -3,7 +3,8 @@ html
   head
     block head
       title DIƒƒER
-      - if (typeof bundles === 'object') {
+      link(rel='icon' href='icon.svg' sizes='any' type='images/svg+xml')
+      - if (typeof bundles === 'object' && bundles.css) {
       link(rel='stylesheet' href=`/css/${bundles.css}`)
       - }
   body
@@ -11,6 +12,6 @@ html
 
     include modal.html
 
-    - if (typeof bundles === 'object') {
+    - if (typeof bundles === 'object' && bundles.js) {
     script(src=`/js/${bundles.js}`)
     - }

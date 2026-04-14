@@ -1,8 +1,9 @@
 .git/
 .gitignore
+.vscode/
 Dockerfile
-client/
+content/
 node_modules/
-sql/
+public/
+tmp/
 volumes/
-

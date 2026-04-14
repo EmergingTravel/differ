@@ -18,12 +18,16 @@ block content
 
       .diff.shrink.hidden
 
-      form#main.h100.flex-col.pure-form
+      form#main.h100.flex-col.pure-form.hidden
 
-        input#title(maxlength=64 placeholder='Untitled').shrink
+        input#title(type='text' maxlength=64 placeholder='Untitled').shrink
 
         .grow
-          .files.flex-row.hidden
-            textarea#fileA.pure-input-1
+          .files.flex-row
+            .editor.flex-row
+              .line-num
+              textarea#fileA.pure-input-1.no-select
             .delim.shrink
-            textarea#fileB.pure-input-1
+            .editor.flex-row
+              .line-num
+              textarea#fileB.pure-input-1.no-select

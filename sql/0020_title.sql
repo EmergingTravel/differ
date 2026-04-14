@@ -1,2 +1,0 @@
-ALTER TABLE items
-ADD COLUMN title VARCHAR(64);

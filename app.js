@@ -6,12 +6,17 @@ const path = require('path')
 
 const { getBundles } = require('./lib/static')
 const indexRouter = require('./routes/index')
+const systemRouter = require('./routes/system')
 
 const app = express()
 
 app.set('views', path.join(__dirname, 'views'))
 app.set('view engine', 'pug')
 app.set('env', process.env.NODE_ENV || 'production')
+
+router.get('/favicon.ico', (req, res, next) => {
+  res.redirect('/icon.svg')
+})
 
 app.use(logger('dev'))
 app.use(express.raw())
@@ -24,11 +29,11 @@ app.use(express.static(path.join(__dirname, 'public'), {
 // Static bundles
 const bundles = getBundles()
 app.use(function (req, res, next) {
-  console.log(bundles)
   res.locals.bundles = bundles
   next()
 })
 
+app.use('/', systemRouter)
 app.use('/', indexRouter)
 
 // catch 404 and forward to error handler
