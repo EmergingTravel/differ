@@ -6,8 +6,8 @@
     "start": "node ./bin/www"
   },
   "dependencies": {
-    "cookie-parser": "^1.4.6",
-    "express": "^4.21.0",
+    "cookie-parser": "^1.4.7",
+    "express": "^4.22.1",
     "http-errors": "^2.0.0",
     "morgan": "^1.10.0",
     "pm2": "^5.3.1",
